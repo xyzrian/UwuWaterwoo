@@ -1,16 +1,24 @@
+# Character definitons, names, color codes
 define ma = Character('Alyssa', color="#c60079")
 define ahs = Character('AHS-chan', color="#146f68")
 define art = Character('Art-chan', color="#e16738")
 define env = Character('Environment-chan', color="#a1aa11")
 define eng = Character('Eng-chan', color="#4f00b4")
 define sci = Character('Science-chan', color="#147acc")
-define anon = Character('Unknown', color="#ffffff")
+define anon = Character('Unknown', color="#ffffff") # When an unknown character is speaking
+
+# Character "points" variables - influence menu options in the game
+define ma_points = 0
+define ahs_points = 0
+define art_points = 0
+define env_points = 0
+define eng_points = 0
+define sci_points = 0
 
 label start:
     scene bg day 1 with fade
     pause
     scene bg uw outside with fade
-    pause
 
     "Tomorrow is my first day at Waterloo as a male CS student."
     "I'm awfully terrified, but I've made the decision to walk around campus to see if I could find any potential friends..."
@@ -207,7 +215,32 @@ label day_1:
 
 label text_message:
     "I hear my phone vibrate on the desk beside me and open my eyes."
+    scene bg holding_phone with fade
     "I have a... text?"
     "Oh! It's from Alyssa!"
     "\"Hey [name]! Just wanted to wish you good luck on your first day of classes. If you need anything, let me know.
     \n - Alyssa\""
+
+    "This message should make me feel good. There is someone actively watching out for me."
+    "Yet, still, I feel uneasy when I go to reply to her text."
+    "After all, why is she even doing this?"
+    "I'm just another student at this god forsaken university."
+    "Does she feel good about herself for helping someone like me?"
+    "Whatever."
+
+menu:
+    "Respond to her text.":
+        $ ma_points += 1
+        "\"Thanks Alyssa. Want to meet up later today?\""
+        "I hope that's not a weird response."
+        "Either way, I don't expect this to go anywhere, but it would be nice to have a familiar face for the first CTRL-A meeting."
+        "Anyway, I still need to shower. I don't want to be the stereotypical CS kid first day in."
+        jump first_class
+    "Forget it. Take a shower.":
+        "I don't have time for this. I'm going to take my shower and get ready for class."
+        jump first_class
+
+label first_class:
+    scene bg outside
+    "Okay. First class done. Not too bad."
+    "We only really went over introductory content of course, but I have high hopes for this course."
