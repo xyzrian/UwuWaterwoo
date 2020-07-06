@@ -1,6 +1,6 @@
 # Character definitons, names, color codes
 define ma = Character('Alyssa', color="#c60079")
-define ahs = Character('AHS-chan', color="#146f68")
+define ahs = Character('Annie', color="#146f68")
 define art = Character('Art-chan', color="#e16738")
 define env = Character('Environment-chan', color="#a1aa11")
 define eng = Character('Eng-chan', color="#4f00b4")
@@ -79,7 +79,7 @@ label walk_away:
 
 label ask_her:
     name "Thank you for returning my card. By the way, what program are you in?"
-    ma "I'm in Math, majoring in Math Finance. What about you?"
+    ma "I'm in Year 2 Math, majoring in Math Finance. What about you?"
     name "Tomorrow I start Computer Science."
     ma "So we're in the same faculty! Cool."
     name "Yeah, that is!"
@@ -93,35 +93,28 @@ label hold_up:
     ma "I'm messing with you, [name]. You're obviously a First Year so this is hilarious to me."
     "Hilarious? Oh my god. This girl must think I'm another CS code-monkey. Crap."
     name "Oh, yeah. Tomorrow is my first day in the Computer Science program."
-    ma "Computer science, huh? I'm also in the Math faculty! Decided to major in Math Finance."
+    ma "Computer science, huh? I'm also in the Math faculty! In Year 2 now, decided to major in Math Finance."
     name "That's awesome."
     jump conversation_club
 
 label conversation_club:
     ma "Have you looked into any clubs or teams you want to join?"
-    name "Well... there is one club, but..."
-    name "..."
+    name "Well... I'm not really sure. There are a few clubs that interest me."
     show mathgirl confused
-    ma "But what?"
+    ma "Like what?"
 
 menu:
-    "Tell her you're interested in the CTRL-A (Anime) club.":
-        jump tell_her
-    "DON'T TELL HER. SHE'LL THINK YOU'RE WEIRD.":
-        jump dont_tell
+    "Tell her you're interested in the CTRL-A (Anime) Club.":
+        jump anime_club
+    "Tell her you're interested in the Concert Band Club.":
+        jump concert_band
+    "Tell her you're busy and need to be on your way now.":
+        jump goodbye
 
-label tell_her:
-    name "The only club I've really looked into is CTRL-A. It seems cool."
-    show mathgirl happy
-    ma "Oh! I've been in CTRL-A since my first week here! I'll introduce you, if you want."
-    jump closing_convo
-
-label dont_tell:
-    name "On second thought, I'm not really a club person."
+label anime_club:
+    $ ma_points += 1
+    name "I really like the CTRL-A Club. I think I might join it."
     show mathgirl looking away
-    ma "No, don't lie! You can tell me. I'm a little strange myself."
-    name "Okay. Fine. I'm only really interested in the CTRL-A club. It seems cool."
-    show mathgirl confused
     ma "CTRL-A? What are you, some sort of weeb?"
     name "... This is why I didn't want to tell you."
     show mathgirl happy
@@ -130,15 +123,11 @@ label dont_tell:
     show mathgirl happy blush
     "She giggles slightly, and only then do I realize what I've just said."
     ma "Well, if you plan on joining, I can introduce you, if you want."
-    jump closing_convo
-
-label closing_convo:
-    name "Honestly, that would be awesome. When is the first meet?"
-    show mathgirl happy with dissolve
-    ma "In two days, at 4 o'clock."
-    name "Awesome. I'll be there."
+    name "That would be awesome. When is the first meet?"
+    ma "In two days, at 6 o'clock."
+    name "I'll be there, then."
     ma "Let's exchange numbers so we can talk more, okay?"
-    name "Uh- sure."
+    name "Uh- okay, sure."
     "We exchange numbers."
     ma "I'm going to V1 to meet with some of my friends. Talk soon?"
     name "Of course. Have fun. And thanks for finding my card."
@@ -148,7 +137,104 @@ label closing_convo:
     "Did I... did I just talk to a girl?"
     "This can't be real. Never have I had someone approach me so proactively like that."
     "And now I have her number too? Maybe I do have a chance here at uWaterloo!"
-    "That's enough socializing for the day, though. Back to my dorm."
+    jump where_to
+
+label concert_band:
+    name "Since I did play in the band at my high school, I think I'm going to join the Concert Band Club."
+    show mathgirl happy
+    ma "Oh, that's awesome. I have a few friends in the club and they really enjoy it."
+    name "Cool. When do rehearsals start?"
+    show mathgirl looking away
+    ma "I believe on September 23, at 7 pm."
+    name "Alright, thanks. Are you in any clubs?"
+    show mathgirl happy
+    ma "Yeah, a few. My favourite is CTRL-A though, haha. I'm a bit of a weeb."
+
+menu:
+    "I am too!":
+        ma "Oh, seriously! Haha, maybe consider joining CTRL-A then."
+        name "I'll think about it."
+        jump closing
+    "Respectable, considering we are at uWaterloo.":
+        show mathgirl looking away
+        ma "I guess we do have the reputation for that sort of thing."
+        jump closing
+
+label goodbye:
+    show mathgirl
+    name "I'd talk more, but there's some things I need to get done."
+    name "Thanks for returning my card back to me. I'll see you around."
+    show mathgirl happy
+    ma "Anytime. Have a good day."
+    show mathgirl
+    hide mathgirl with dissolve
+    "Well, that was interesting."
+    jump where_to
+
+label closing:
+        show mathgirl happy
+        ma "Anyway, I'm going to V1 to visit some friends before class starts tomorrow. See ya around."
+        name "Have fun. And thanks for finding my card."
+        ma "Yeah, you're welcome. Don't lose it again."
+        show mathgirl
+        hide mathgirl with dissolve
+        jump where_to
+
+label where_to:
+    "What should I do now?"
+
+menu:
+    "Get Bubble Tea.":
+        "I'm craving BBT right now. Off to Coco's."
+        jump bbt
+    "Go back to dorm.":
+        "That's enough socializing for the day. I'm going to head back to my room."
+        jump dorm
+
+label bbt:
+    scene coco_bbt with fade
+    "Ahh, finally at Coco's."
+    anon "Hi there, what could I get for you today?"
+
+menu:
+    "Order Grass Jelly Roasted Milk Tea.":
+        name "Hi, I'll take a medium Grass Jelly Roasted Milk Tea."
+        jump order
+    "Order a Strawberry Latte.":
+        name "Hi, I'll take a medium Strawberry Latte."
+        jump order
+    "Order Brown Sugar Milk Tea with extra sugar, red beans, and tapioca":
+        $ ahs_points += 1
+        name "Hi, I'll take a medium Brown Sugar Milk Tea with extra sugar, red beans, and tapioca."
+        name "And I mean, a lot of tapioca."
+        jump special_order
+
+label order:
+    anon "Alright, anything else?"
+    name "Nope, that's everything."
+    jump after_order
+
+label special_order:
+    "The cashier's face scrunches up as she gives me an interesting look."
+    "Is she annoyed with my picky order? No... she's smiling."
+    "It seems as though she wants to say something, but settles for a:"
+    anon "Is that all?"
+    name "Yep, that's everything."
+    "Weird. I feel like I know this girl from somewhere."
+    jump after_order
+
+label after_order:
+    "She makes my drink for me and I pause for a moment, wondering whether I want to have my drink in the store"
+    "or head back to my dorm."
+    menu:
+        "Stay in the store.":
+            "I decide to take a seat in the store and browse Reddit as I sip away at my beverage."
+            jump sit_store
+        "Go back to dorm.":
+            "I'm getting tired, so I'll go back to my dorm for now."
+
+label sit_store:
+    you are here. 
 
 label dorm:
     scene bg black with fade
