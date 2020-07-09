@@ -1,11 +1,12 @@
 # Character definitons, names, color codes
 define ma = Character('Alyssa', color="#c60079")
 define ahs = Character('Annie', color="#146f68")
-define art = Character('Art-chan', color="#e16738")
-define env = Character('Environment-chan', color="#a1aa11")
-define eng = Character('Eng-chan', color="#4f00b4")
-define sci = Character('Science-chan', color="#147acc")
+define art = Character('Kaori', color="#e16738")
+define env = Character('Neve', color="#a1aa11")
+define eng = Character('Nicole', color="#4f00b4")
+define sci = Character('Sachi', color="#147acc")
 define anon = Character('Unknown', color="#ffffff") # When an unknown character is speaking
+define dar = Character('Darren', color="#180896")
 
 # Character "points" variables - influence menu options in the game
 define ma_points = 0
@@ -192,7 +193,7 @@ menu:
         jump dorm
 
 label bbt:
-    scene coco_bbt with fade
+    scene cocos_cashier with fade
     "Ahh, finally at Coco's."
     anon "Hi there, what could I get for you today?"
 
@@ -232,9 +233,69 @@ label after_order:
             jump sit_store
         "Go back to dorm.":
             "I'm getting tired, so I'll go back to my dorm for now."
+            jump dorm
 
 label sit_store:
-    you are here. 
+    scene cocos_seating with fade
+    "Let's see what's on the uWaterloo subreddit today. Afterall, classes do start tomorrow, so hopefully there's something worth reading."
+    show phone with fade
+    "I begin to scroll through my new school's Reddit page."
+    "As usual, I see the typical NSFW drawings posted by the {i}wonderful{/i} artists here at UW."
+    "It may seem strange, but the uWaterloo x UofT tsundere drawings are almost... attractive to me?"
+    "Don't get the wrong idea: it's not the drawings that are turning me on of course.."
+    "more so just imagining the possibilities that await for me here at this school."
+    "Aha, who am I kidding? I'm a CS kid. No one, girl nor guy, would have interest in me."
+    "I'm about to laugh at myself, but just then, I hear a group of four students walk into Coco's and my heart drops."
+    "I recognize two of them from OWeek. The other two are their girlfriends... oh crap."
+    "They were the same kids that made fun of me for..."
+    "well... I need to act fast. They're bound to look this way any second now."
+
+menu:
+    "Go back to dorm.":
+        "Screw this, I'm going back to CMH now."
+        jump dorm
+    "Chill out. Talk to them.":
+        "Whatever, I can't let people like this get to me."
+        "Hell, if they look my way, I might as well talk to them for the fun of it."
+        jump darren
+
+label darren:
+    "As the group makes their way into the line, the tallest of the bunch - Darren - locks eyes with me for a moment."
+    "A smile begins to stretch across his face."
+    dar "Hey, it's [name]! What's up, man?"
+    "I get up from my seat, toss my empty beverage container into the recycling bin, and make my way over to the group."
+    name "Nothing much, just thought I'd chill at Coco's for a bit before everything gets hectic tomorrow."
+    dar "All by yourself? C'mon man, that's lame! Where are your friends at?"
+    "I begin to think of Alyssa, the only other person I've held a conversation with today."
+    name "Yeah, I was with some friends earlier, but they're off somewhere else now."
+    dar "Makes sense. Hey, have you met my girlfriend yet?"
+    "I make eye contact with the brunette wearing her hair braided to the side."
+    env "Hi, nice to meet you. I'm Neve."
+    "She gives me a friendly smile."
+    name "Hi, I'm [name]."
+
+menu:
+    "Compliment her hair.":
+        $ env_points += 1
+        name "Your hair looks really great."
+        dar "Woah there, I know she's pretty, but keep it to yourself man."
+    "Joke around with her.":
+        $ env_points += 1
+        name "What's a girl like you doing with a guy like him?"
+        "They both laugh."
+        dar "You know what they say - love works in mysterious ways."
+        name "That's damn right. How long have y'all been together?"
+        env "Well, I guess since Grade 10, although we've both had our ups and downs."
+
+    "She has a boyfriend, bro. Say less.":
+        name "You guys in the same program?"
+        env "Nah, math is definitely not my forte. I'm in Planning!"
+        "Oh jeez, an Environment girl. I best be careful."
+        name "That's awesome. Your co-op sequences are different though, no?"
+        dar "Yeah.. we'll be together for 1A, 1B, and 2A... but after that we'll be apart for a long time."
+        env "It sucks, but I think in the long run it'll be better for us to explore our own career paths."
+        you are here.
+
 
 label dorm:
     scene bg black with fade
