@@ -193,7 +193,7 @@ menu:
         jump dorm
 
 label bbt:
-    scene cocos_cashier with fade
+    scene bg cocos_cashier with fade
     "Ahh, finally at Coco's."
     anon "Hi there, what could I get for you today?"
 
@@ -262,6 +262,7 @@ menu:
 label darren:
     "As the group makes their way into the line, the tallest of the bunch - Darren - locks eyes with me for a moment."
     "A smile begins to stretch across his face."
+    show darren at right with dissolve
     dar "Hey, it's [name]! What's up, man?"
     "I get up from my seat, toss my empty beverage container into the recycling bin, and make my way over to the group."
     name "Nothing much, just thought I'd chill at Coco's for a bit before everything gets hectic tomorrow."
@@ -269,6 +270,7 @@ label darren:
     "I begin to think of Alyssa, the only other person I've held a conversation with today."
     name "Yeah, I was with some friends earlier, but they're off somewhere else now."
     dar "Makes sense. Hey, have you met my girlfriend yet?"
+    show envgirl at left with dissolve
     "I make eye contact with the brunette wearing her hair braided to the side."
     env "Hi, nice to meet you. I'm Neve."
     "She gives me a friendly smile."
@@ -279,6 +281,9 @@ menu:
         $ env_points += 1
         name "Your hair looks really great."
         dar "Woah there, I know she's pretty, but keep it to yourself man."
+        "Neve looks away, blushing."
+        name "Ahaha, I'm messing with you. You guys are too cute."
+        jump party
     "Joke around with her.":
         $ env_points += 1
         name "What's a girl like you doing with a guy like him?"
@@ -286,7 +291,9 @@ menu:
         dar "You know what they say - love works in mysterious ways."
         name "That's damn right. How long have y'all been together?"
         env "Well, I guess since Grade 10, although we've both had our ups and downs."
-
+        dar "Wouldn't wanna have it any other way."
+        "They share a look with each other. Perhaps an affectionate one? I really wouldn't know."
+        jump party
     "She has a boyfriend, bro. Say less.":
         name "You guys in the same program?"
         env "Nah, math is definitely not my forte. I'm in Planning!"
@@ -294,8 +301,35 @@ menu:
         name "That's awesome. Your co-op sequences are different though, no?"
         dar "Yeah.. we'll be together for 1A, 1B, and 2A... but after that we'll be apart for a long time."
         env "It sucks, but I think in the long run it'll be better for us to explore our own career paths."
-        you are here.
+        jump party
 
+label party:
+    dar "Anyway man, we're actually planning on hosting a party this Saturday. You down to come?"
+    "Party?.. I've never been to anything remotely close to a party."
+    "What do I do?"
+
+menu:
+    "Go for it. It'll be fun.":
+        name "Oh hell yeah, I'm down. Where at?"
+        dar "In REV, at 9 pm. Sauce me your number and I'll text you the details."
+        name "Sounds good man."
+        "We exchange numbers."
+        dar "Alright, sick. We're gonna go place an order now. See ya around man."
+        name "Take care."
+    "School is my main focus right now.":
+        name "That sounds nice, but I think I want to narrow my focus onto my school work right now. Sorry."
+        dar "No worries man. If you change your mind, you can come by. We'll be in REV."
+    "I'm too socially inept for parties.":
+        name "Well... I've never really been to a party. My social skills are lacking."
+        dar "Bro, you're in Uni now. I'll introduce you to some people, maybe some hot chicks if that's what you're in to."
+        "A grin spreads across my face. Maybe this won't be so awful."
+        name "Alright, fine, only if I can meet some girls."
+        "Darren and Neve both share a laugh with me."
+        dar "Awesome, Sauce me your number and I'll text you the details."
+        "We exchange numbers."
+        dar "Alright, sick. We're gonna go place an order now. See ya around man."
+        env "Yeah! I'll introduce you to some of my friends hopefully."
+        name "Haha, take care guys."
 
 label dorm:
     scene bg black with fade
@@ -306,15 +340,14 @@ label dorm:
     "And although I should shower first, I'm gonna hit the sheets now. I'm exhausted. My shower can wait."
     scene bg black with fade
     "[name], just like most other teens their age, experiences many {i}real life{/i} issues."
-    "For this reason, this game includes themes of (including, but not limited to) sex, alcohol/drugs, violence, mental health, and suicide."
-    "Currently, there is no safe for work (SFW) version of this game."
-    "In order to continue reading this story, you must agree to enable not safe for work (NSFW) content."
+    "For this reason, this game includes content that may be not safe for work (NSFW)."
+    "In order to continue reading this story, you must agree to enable NSFW content."
     "Not enabling NSFW will end the story."
     "Would you like to enable NSFW content?"
 
 menu:
     "Enable NSFW content.":
-        "You have enabled NSFW content."
+        "You have enabled NSFW content. Enjoy the rest of the game!"
         jump day_1
     "Keep NSFW content disabled.":
         "Click to return to the main menu."
@@ -360,32 +393,42 @@ label day_1:
     "There was a long journey ahead of me."
     scene bg black
 
-label text_message:
-    "I hear my phone vibrate on the desk beside me and open my eyes."
-    scene bg holding_phone with fade
-    "I have a... text?"
-    "Oh! It's from Alyssa!"
-    "\"Hey [name]! Just wanted to wish you good luck on your first day of classes. If you need anything, let me know.
-    \n - Alyssa\""
+if ma_points > 0:
+    label text_message:
+        "I hear my phone vibrate on the desk beside me and open my eyes."
+        scene bg holding_phone with fade
+        "I have a... text?"
+        "Oh! It's from Alyssa!"
+        "\"Hey [name]! Just wanted to wish you good luck on your first day of classes. If you need anything, let me know.
+        \n - Alyssa\""
 
-    "This message should make me feel good. There is someone actively watching out for me."
-    "Yet, still, I feel uneasy when I go to reply to her text."
-    "After all, why is she even doing this?"
-    "I'm just another student at this god forsaken university."
-    "Does she feel good about herself for helping someone like me?"
-    "Whatever."
+        "This message should make me feel good. There is someone actively watching out for me."
+        "Yet, still, I feel uneasy when I go to reply to her text."
+        "After all, why is she even doing this?"
+        "I'm just another student at this god forsaken university."
+        "Does she feel good about herself for helping someone like me?"
+        "Whatever."
 
-menu:
-    "Respond to her text.":
-        $ ma_points += 1
-        "\"Thanks Alyssa. Want to meet up later today?\""
-        "I hope that's not a weird response."
-        "Either way, I don't expect this to go anywhere, but it would be nice to have a familiar face for the first CTRL-A meeting."
-        "Anyway, I still need to shower. I don't want to be the stereotypical CS kid first day in."
-        jump first_class
-    "Forget it. Take a shower.":
-        "I don't have time for this. I'm going to take my shower and get ready for class."
-        jump first_class
+    menu:
+        "Respond to her text.":
+            $ ma_points += 1
+            "\"Thanks Alyssa. Want to meet up later today?\""
+            "I hope that's not a weird response."
+            "Either way, I don't expect this to go anywhere, but it would be nice to have a familiar face for the first CTRL-A meeting."
+            "Anyway, I still need to shower. I don't want to be the stereotypical CS kid first day in."
+            jump first_class
+        "Forget it. Take a shower.":
+            "I don't have time for this. I'm going to take my shower and get ready for class."
+            jump first_class
+
+else:
+    label alarm:
+        "I wake up to the sound of my 7 am alarm."
+        "Did I really just spend the last hour plauged with thoughts of the past?"
+        "Oh well. There is nothing I can do now. There was never a single thing I could do."
+        "Today is the big day. I need to take a shower first, so that's what I'll do."
+
+
 
 label first_class:
     scene bg outside
