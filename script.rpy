@@ -389,7 +389,7 @@ label day_1:
     "My father was announced dead at the scene, and my mother was charged with murder in the first degree just days after."
     show bg plane
     "With no relatives here in South Carolina, I was made to leave everything behind and live with my mom's brother in the city of Lloydminster, in Alberta, Canada."
-    "My Uncle Amrit had no wife nor kids, and I had never even met him prior to the accident, but here I was, being put in his care for the rest of my childhood."
+    "My Uncle Chase had no wife nor kids, and I had never even met him prior to the accident, but here I was, being put in his care for the rest of my childhood."
     "There was a long journey ahead of me."
     scene bg black
 
